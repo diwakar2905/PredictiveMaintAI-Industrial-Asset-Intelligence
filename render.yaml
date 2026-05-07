@@ -19,5 +19,5 @@ services:
     envVars:
       - key: API_URL
         # Placeholder: set this to your backend URL after deployment
-        value: "https://<BACKEND_SERVICE_URL>"
+        value: "https://predictive-maintenance-backend.onrender.com"
     autoDeploy: true

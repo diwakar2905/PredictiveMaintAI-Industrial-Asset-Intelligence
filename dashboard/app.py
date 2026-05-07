@@ -5,7 +5,13 @@ Interactive UI for the Predictive Maintenance Platform.
 Run: streamlit run dashboard/app.py
 """
 
-import streamlit as st
+try:
+    import streamlit as st  # type: ignore[reportMissingImports]
+except ImportError as e:
+    raise ImportError(
+        "streamlit is not installed. Please install it with `pip install streamlit` "
+        "and re-run the dashboard (streamlit run dashboard/app.py)."
+    ) from e
 import requests
 import pandas as pd
 import plotly.graph_objects as go

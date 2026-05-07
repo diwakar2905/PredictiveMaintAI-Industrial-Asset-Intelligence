@@ -240,7 +240,7 @@ with st.sidebar:
 
     st.divider()
     st.markdown(
-        "<small style='color:#4a5568'>Built with FastAPI + PyTorch + XGBoost + Streamlit</small>",
+        "<small style='color:#4a5568'>Built with Flask + PyTorch + XGBoost + Streamlit</small>",
         unsafe_allow_html=True
     )
 

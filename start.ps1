@@ -20,9 +20,10 @@ if (Test-Path $venvActivate) {
     Write-Host "No virtual environment found at .\venv. Continuing with system Python." -ForegroundColor Yellow
 }
 
-# Start backend (uvicorn)
-Write-Host "Starting FastAPI backend on http://localhost:8000..."
-$backendProc = Start-Process -FilePath "python" -ArgumentList "-m uvicorn src.api.main:app --host 0.0.0.0 --port 8000 --reload" -WindowStyle Hidden -PassThru
+# Start backend (Flask)
+Write-Host "Starting Flask backend on http://localhost:8000..."
+# Run the Flask WSGI app directly for local dev
+$backendProc = Start-Process -FilePath "python" -ArgumentList "-u src/api/app.py" -WindowStyle Hidden -PassThru
 
 Start-Sleep -Seconds 2
 

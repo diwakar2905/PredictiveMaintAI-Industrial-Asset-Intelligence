@@ -42,7 +42,7 @@ Industrial equipment failures cause **billions in unplanned downtime** annually.
 └─────────────────────┬───────────────────────────────┘
                        │ HTTP REST
 ┌─────────────────────▼───────────────────────────────┐
-│                   FastAPI Backend                    │
+│                   Flask Backend                      │
 │  /upload_data  /train_model  /predict  /get_rul      │
 │  /anomaly_score  /full_report  /feature_importance   │
 └─────────────────────┬───────────────────────────────┘
@@ -100,16 +100,14 @@ predictive_maintenance/
 │   ├── rul.py                     # Remaining Useful Life regression
 │   ├── business_logic.py          # Risk scoring, alerts, cost estimation
 │   └── api/
-│       └── main.py                # FastAPI REST backend
+│       └── app.py                 # Flask WSGI backend
 ├── dashboard/
 ## 🐳 Docker
 │
 Docker support has been removed from this repository. To run the project locally, follow the "Quick Start (Local)" instructions above using Python and Streamlit, or use the `start.sh` script.
 ├── utils/
-│
+#
 ├── requirements.txt
-├── Dockerfile
-├── docker-compose.yml
 ├── start.sh
 └── README.md
 ```
@@ -140,12 +138,15 @@ python utils/generate_sample_data.py
 ### Step 3: Start the Backend
 
 ```bash
-# From project root
-uvicorn src.api.main:app --host 0.0.0.0 --port 8000 --reload
+# From project root (development)
+python -u src/api/app.py
+
+# For production (use gunicorn)
+gunicorn src.api.app:app --bind 0.0.0.0:8000
 ```
 
 Backend available at: http://localhost:8000
-API docs at: http://localhost:8000/docs
+Run the Flask WSGI app locally; interactive Swagger docs are not provided for the Flask wrapper.
 
 ### Step 4: Start the Dashboard (new terminal)
 
@@ -165,11 +166,7 @@ Dashboard at: http://localhost:8501
 ---
 
 
-# Build
-docker build -t predictive-maintenance .
 
-# Stop
-```
 
 ---
 
@@ -256,7 +253,7 @@ timestamp,machine_id,temperature,vibration,pressure,rpm
 | Layer | Technology |
 |-------|------------|
 | Frontend | Streamlit + Plotly |
-| Backend | FastAPI + Uvicorn |
+| Backend | Flask + Gunicorn |
 | Deep Learning | PyTorch (LSTM) |
 | ML | XGBoost, Scikit-learn |
 | Explainability | SHAP |

@@ -5,8 +5,8 @@ set -euo pipefail
 echo "🚀 Starting Predictive Maintenance Platform..."
 
 # Start FastAPI backend in background
-echo "⚙️  Starting FastAPI backend on port 8000..."
-python -m uvicorn src.api.main:app --host 0.0.0.0 --port 8000 &
+echo "⚙️  Starting Flask backend (gunicorn) on port 8000..."
+gunicorn src.api.app:app --bind 0.0.0.0:8000 &
 BACKEND_PID=$!
 
 # Give backend a moment to initialize

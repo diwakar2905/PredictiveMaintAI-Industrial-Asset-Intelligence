@@ -18,6 +18,6 @@ services:
     startCommand: streamlit run dashboard/app.py --server.port 8501 --server.headless true
     envVars:
       - key: API_URL
-        # Placeholder: set this to your backend URL after deployment
-        value: "https://predictive-maintenance-backend.onrender.com"
+        # Backend service URL assigned by Render
+        value: "https://predictivemaintai-industrial-asset-25g8.onrender.com"
     autoDeploy: true

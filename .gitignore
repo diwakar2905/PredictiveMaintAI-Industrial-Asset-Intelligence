@@ -1,0 +1,42 @@
+#.gitignore for Predictive Maintenance project
+/.venv
+venv/
+__pycache__/
+*.pyc
+.env
+.vscode/
+.idea/
+node_modules/
+dist/
+build/
+*.egg-info/
+/.pytest_cache/
+
+# Data and models
+/data/
+/models/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+__pycache__/
+*.py[cod]
+*.egg-info/
+.env
+.venv/
+venv/
+dist/
+build/
+*.pkl
+*.pt
+*.h5
+models/*.pkl
+models/*.pt
+data/*.csv
+!data/.gitkeep
+.DS_Store
+*.log
+.streamlit/

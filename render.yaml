@@ -1,0 +1,23 @@
+services:
+  - type: web
+    name: predictive-maintenance-backend
+    env: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn src.api.main:app --host 0.0.0.0 --port 8000
+    healthCheckPath: /health
+    autoDeploy: true
+
+  - type: web
+    name: predictive-maintenance-frontend
+    env: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: streamlit run dashboard/app.py --server.port 8501 --server.headless true
+    envVars:
+      - key: API_URL
+        # Placeholder: Render will assign a public URL to the backend service.
+        # After deployment you should set this to the backend service URL, e.g.
+        # https://predictive-maintenance-backend.onrender.com
+        value: "https://<BACKEND_SERVICE_URL>"
+    autoDeploy: true
